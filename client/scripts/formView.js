@@ -10,14 +10,29 @@ var FormView = {
     FormView.$form.on('submit', FormView.handleSubmit);
   },
 
+  reRender: () => {
+    MessagesView.$chats.html(''); // problem
+    Messages._data = [];
+    App.fetch(App.stopSpinner);
+    console.log('succeeded');
+  },
+
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
 
     // TODO: Currently, this is all handleSubmit does.
     // Make this function actually send a message to the Parse API.
-  
-    console.log('click!');
+
+    // access the text box and use .value , .val()
+    var message = {
+      username: App.username,
+      text: $('form #message').val(),
+      roomname: RoomsView.$select.find(':selected').text()
+    };
+
+    Parse.create(message, () => { FormView.reRender(); });
+
   },
 
   setStatus: function(active) {
@@ -26,3 +41,10 @@ var FormView = {
   }
 
 };
+
+// var testMsg = {
+//   username: 'test',
+//   text: 'test',
+//   roomname: 'test'
+// };
+// Parse.create(testMsg, () => { console.log('succeeded'); });

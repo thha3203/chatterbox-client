@@ -19,17 +19,32 @@ var App = {
     App.startSpinner();
     App.fetch(App.stopSpinner);
 
+
     // TODO: Make sure the app loads data from the API
     // continually, instead of just once at the start.
+    setInterval(FormView.reRender, 60000);
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      console.log(data);
+      console.log(data); // data is an array;
+
+      // Test
+      data.forEach( message => {
+        Messages._data.push(message);
+        if (message.roomname && !Rooms._data[message.roomname]) {
+          Rooms.add(message.roomname);
+          RoomsView.renderRoom(message.roomname);
+        }
+      });
+
+      // Render all messages from server
+      MessagesView.render();
 
       // TODO: Use the data to update Messages and Rooms
       // and re-render the corresponding views.
+      callback();
     });
   },
 

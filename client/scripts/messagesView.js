@@ -12,10 +12,20 @@ var MessagesView = {
 
   render: function() {
     // TODO: Render _all_ the messages.
+    Messages._data.forEach( message => {
+      MessagesView.renderMessage(message);
+    });
   },
 
   renderMessage: function(message) {
     // TODO: Render a single message.
+    // console.log(message.username);
+    var newMsg = MessageView.render({
+      username: _.escape(message.username),
+      text: _.escape(message.text)
+    });
+    MessagesView.$chats.append(newMsg);
+    MessagesView.$chats.find('.username').on('click', Friends.toggleStatus);
   },
 
   handleClick: function(event) {
@@ -24,3 +34,6 @@ var MessagesView = {
   }
 
 };
+
+// GET https://app-hrsei-api.herokuapp.com/api/chatterbox/messages/:campus
+// POST https://app-hrsei-api.herokuapp.com/api/chatterbox/messages/:campus
