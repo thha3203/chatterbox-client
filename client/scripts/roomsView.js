@@ -40,7 +40,7 @@ var RoomsView = {
     // TODO: Handle the user clicking the "Add Room" button.
     // log out what currently selected room when add room button is clicked
     // let roomName = RoomsView.$select.find(':selected').text();
-    let roomName = $('form #message').val();
+    let roomName = window.prompt('Enter room name');
     if (roomName !== '') {
       Rooms.add(roomName);
       RoomsView.renderRoom(roomName);

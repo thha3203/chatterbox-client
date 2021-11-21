@@ -5,9 +5,15 @@
 var Messages = {
 
   // TODO: Define how you want to store your messages.
-  _data: []
+  _data: [],
 
   // TODO: Define methods which allow you to retrieve from,
   // add to, and generally interact with the messages.
+
+  update: (messages, callback) => {
+    for (var message of messages) {
+      Messages.data[message.message_id] = message;
+    }
+  }
 
 };

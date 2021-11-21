@@ -12,7 +12,9 @@ var MessagesView = {
 
   render: function() {
     // TODO: Render _all_ the messages.
-    Messages._data.forEach( message => {
+    let selectedRoom = RoomsView.$select.find(':selected').text();
+    let roomMsg = Messages._data.filter( msg => msg.roomname === selectedRoom);
+    roomMsg.forEach( message => {
       MessagesView.renderMessage(message);
     });
   },

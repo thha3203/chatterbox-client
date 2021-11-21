@@ -30,7 +30,10 @@ var App = {
       // examine the response from the server request:
       console.log(data); // data is an array;
 
-      // Test
+      // TODO: Use the data to update Messages and Rooms
+      // and re-render the corresponding views.
+
+      // Push each message into message storage and add roomnames to list
       data.forEach( message => {
         Messages._data.push(message);
         if (message.roomname && !Rooms._data[message.roomname]) {
@@ -42,8 +45,7 @@ var App = {
       // Render all messages from server
       MessagesView.render();
 
-      // TODO: Use the data to update Messages and Rooms
-      // and re-render the corresponding views.
+      // invoke the callBack function
       callback();
     });
   },

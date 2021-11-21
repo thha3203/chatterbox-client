@@ -31,7 +31,11 @@ var FormView = {
       roomname: RoomsView.$select.find(':selected').text()
     };
 
-    Parse.create(message, () => { FormView.reRender(); });
+    Parse.create(message, () => {
+      FormView.reRender();
+      FormView.$form.add('#message').val('');
+    });
+
 
   },
 

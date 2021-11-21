@@ -17,10 +17,10 @@ var Friends = {
   // {name: {added: false, toggleStatus: false}}
   toggleStatus: (event) => {
     var name = event.currentTarget.innerText; // username
-    if (!Friends._data.name) {
-      Friends._data.name = true;
+    if (!Friends._data[name]) {
+      Friends._data[name] = true;
     } else {
-      delete Friends._data.name;
+      delete Friends._data[name];
     }
   }
 
